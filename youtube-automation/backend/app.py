@@ -1,25 +1,30 @@
-# app.py
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS so frontend can call this backend
+CORS(app)
 
-@app.route('/api/prompt', methods=['POST'])
-def handle_prompt():
+@app.route('/generate-blogs', methods=['POST'])
+def generate_blogs():
     data = request.get_json()
-    prompt = data.get('prompt')
+    prompt = data.get('prompt', '')
 
     if not prompt:
-        return jsonify({'error': 'Prompt is required'}), 400
+        return jsonify({"status": "error", "message": "No prompt provided"}), 400
 
-    print(f"Received prompt: {prompt}")
-    # Future: Pass this to AI/Video Generator Logic
+    # Simulate blog generation
+    generated_blogs = [f"{prompt} Blog {i}" for i in range(1, 6)]
 
     return jsonify({
-        'message': f'Prompt received: {prompt}',
-        'status': 'success'
-    })
+        "status": "success",
+        "message": "Prompt received",
+        "blogs": generated_blogs
+    }), 200
+
+@app.route('/generate-blogs', methods=['GET'])
+def handle_get():
+    return jsonify({"message": "Use POST instead of GET"}), 405
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
