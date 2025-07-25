@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Automation Prompt</title>
+    <style>
+        body {
+            background-color: #0f0f0f;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 50px 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #00ffe1;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px #00ffe1;
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 255, 225, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 90%;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background-color: #2a2a2a;
+            color: #fff;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 1rem;
+            background-color: #00ffe1;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #00e0c0;
+        }
+        #output {
+            margin-top: 25px;
+            font-size: 1rem;
+            color: #ccc;
+        }
+        footer {
+            margin-top: 60px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>YouTube Automation</h1>
+    <div class="container">
+        <input type="text" id="promptInput" placeholder="Enter a prompt, e.g., Make a video on DevOps" /><br />
+        <button onclick="submitPrompt()">Submit Prompt</button>
+        <div id="output"></div>
+    </div>
+    <footer>&copy; 2025 YouTube Automation by Dhruv Shah</footer>
+    <script>
+        function submitPrompt() {
+            const input = document.getElementById('promptInput');
+            const output = document.getElementById('output');
+            const prompt = input.value.trim();
+            if (prompt === '') {
+                output.innerHTML = '❗ Please enter a prompt.';
+                return;
+            }
+            output.innerHTML = '⏳ Processing prompt: <strong>' + prompt + '</strong>';
+            setTimeout(() => {
+                output.innerHTML = '✅ Prompt sent! Video generation started for: <em>' + prompt + '</em>';
+            }, 1500);
+        }
+    </script>
